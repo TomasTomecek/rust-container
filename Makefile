@@ -21,4 +21,4 @@ exec-test:
 	py.test-3 -vv tests
 
 shell:
-	$(NIGHTLY_CONTAINER_RUN) zsh -l
+	docker run --rm -ti $(STABLE_IMAGE_NAME) bash -l

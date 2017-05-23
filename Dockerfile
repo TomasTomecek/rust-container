@@ -10,11 +10,11 @@ RUN dnf install -y curl tar gcc openssl-devel cmake make file libcurl-devel zsh 
 ARG RUST_SPEC=stable
 # ARG WITH_TEST="yes"
 ARG USER_ID="1000"
-ARG USER_NAME="rust"
+ARG USER="rust"
 ARG RUST_BACKTRACE="1"
 
-ENV HOME=/home/${USER_NAME}
-RUN useradd -o -u ${USER_ID} -m ${USER_NAME}
+ENV HOME=/home/${USER}
+RUN useradd -o -u ${USER_ID} -m ${USER}
 
 # https://static.rust-lang.org/dist/2017-03-16/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
 RUN cd $HOME && curl -s https://static.rust-lang.org/rustup.sh | sh -s -- --spec=$RUST_SPEC --verbose --disable-sudo
