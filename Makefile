@@ -28,10 +28,10 @@ ci-nightly:
 # 	$(NIGHTLY_CONTAINER_RUN) make exec-test
 
 ci-nightly-test:
-	IMAGE_NAME=$(CI_NIGHTLY_IMAGE_NAME) py.test-3 -vv tests
+	IMAGE_NAME=$(CI_NIGHTLY_IMAGE_NAME) py.test -vv tests
 
 ci-stable-test:
-	IMAGE_NAME=$(CI_STABLE_IMAGE_NAME) py.test-3 -vv tests
+	IMAGE_NAME=$(CI_STABLE_IMAGE_NAME) py.test -vv tests
 
 shell:
 	docker run --rm -ti $(STABLE_IMAGE_NAME) bash -l
