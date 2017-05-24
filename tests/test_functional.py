@@ -30,6 +30,7 @@ def test_by_compiling(tmpdir):
     )
     d.start(container)
     d.wait(container)
+    print(d.logs(container))
     output = subprocess.check_output([os.path.join(str(tmpdir), "main")]).decode("utf-8")
     expected_output = "works\n"
     assert output == expected_output
