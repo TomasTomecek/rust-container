@@ -14,9 +14,9 @@ default: build
 build: stable
 
 stable:
-	docker build --build-arg USER_ID=$(CURRENT_USER) --build-arg RUST_SPEC=$(RUST_STABLE_SPEC) --tag $(STABLE_IMAGE_NAME) .
+	docker build --build-arg USER_ID=$(CURRENT_USER_ID) --build-arg RUST_SPEC=$(RUST_STABLE_SPEC) --tag $(STABLE_IMAGE_NAME) .
 nightly:
-	docker build --build-arg USER_ID=$(CURRENT_USER) --build-arg RUST_SPEC=$(RUST_NIGHTLY_SPEC) --tag $(NIGHTLY_IMAGE_NAME) .
+	docker build --build-arg USER_ID=$(CURRENT_USER_ID) --build-arg RUST_SPEC=$(RUST_NIGHTLY_SPEC) --tag $(NIGHTLY_IMAGE_NAME) .
 
 ci-stable:
 	docker build --build-arg USER_ID=$(CI_USER_ID) --build-arg RUST_SPEC=$(RUST_STABLE_SPEC) --tag $(CI_STABLE_IMAGE_NAME) .
