@@ -14,7 +14,7 @@ def test_by_compiling(tmpdir):
     rust_source_file = os.path.join(helper_files_dir, "main.rs")
     shutil.copy2(rust_source_file, str(tmpdir))
 
-    d = docker.APIClient()
+    d = docker.APIClient(version="auto")
     container = d.create_container(
         IMAGE_NAME,
         command="rustc ./main.rs",
@@ -36,7 +36,7 @@ def test_by_compiling(tmpdir):
 
 
 def test_cargo(tmpdir):
-    d = docker.APIClient()
+    d = docker.APIClient(version="auto")
     container = d.create_container(
         IMAGE_NAME,
         command="sleep 99999",
