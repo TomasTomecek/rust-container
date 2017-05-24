@@ -3,7 +3,10 @@ FROM fedora:25
 LABEL maintainer="Tomas Tomecek <tomas@tomecek.net>"
 
 # curl tar gcc openssl-devel cmake make libcurl-devel zsh
-RUN dnf install -y file && \
+
+# file -- required by rustup
+# gcc -- linker is required to compile and link rust programs
+RUN dnf install -y file gcc && \
     dnf clean all
 
 # stable, beta, nightly, 1.15.1
