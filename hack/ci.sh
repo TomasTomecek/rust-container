@@ -4,7 +4,7 @@
 
 set -e
 
-echo $KEY
+mkdir -p ~/.docker && echo "${DOCKER_AUTH}" >~/.docker/config.json
 
 set -x
 
@@ -15,8 +15,8 @@ TESTS_PASSED=$?
 if [[ $TESTS_PASSED == 0 ]] ; then
   VERSION=$(make get-nightly-version)
   docker tag tomastomecek/rust:nightly tomastomecek/rust:$VERSION
-  # docker push tomastomecek/rust:nightly
-  # docker push tomastomecek/rust:$VERSION
+  docker push tomastomecek/rust:nightly
+  docker push tomastomecek/rust:$VERSION
 fi
 
 make ci-stable
@@ -25,6 +25,6 @@ TESTS_PASSED=$?
 if [[ $TESTS_PASSED == 0 ]] ; then
   VERSION=$(make get-stable-version)
   docker tag tomastomecek/rust tomastomecek/rust:$VERSION
-  # docker push tomastomecek/rust
-  # docker push tomastomecek/rust:$VERSION
+  docker push tomastomecek/rust
+  docker push tomastomecek/rust:$VERSION
 fi
