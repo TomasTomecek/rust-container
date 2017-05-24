@@ -2,8 +2,8 @@ FROM fedora:25
 
 LABEL maintainer="Tomas Tomecek <tomas@tomecek.net>"
 
-RUN dnf install -y curl tar gcc openssl-devel cmake make file libcurl-devel zsh && \
-    dnf clean all
+# RUN dnf install -y curl tar gcc openssl-devel cmake make file libcurl-devel zsh && \
+#     dnf clean all
 
 # stable, beta, nightly, 1.15.1
 # channel, channel + date, or an explicit version
