@@ -5,6 +5,9 @@ import subprocess
 import docker
 
 
+IMAGE_NAME=os.environ["IMAGE_NAME"]
+
+
 def test_by_compiling(tmpdir):
     tests_dir = os.path.dirname(os.path.abspath(__file__))
     helper_files_dir = os.path.join(tests_dir, "files")
@@ -13,7 +16,7 @@ def test_by_compiling(tmpdir):
 
     d = docker.APIClient()
     container = d.create_container(
-        "tt/rust",
+        IMAGE_NAME,
         command="rustc ./main.rs",
         volumes=['/src'],
         host_config=d.create_host_config(
@@ -35,7 +38,7 @@ def test_by_compiling(tmpdir):
 def test_cargo(tmpdir):
     d = docker.APIClient()
     container = d.create_container(
-        "tt/rust",
+        IMAGE_NAME,
         command="sleep 99999",
         volumes=['/src'],
         host_config=d.create_host_config(
