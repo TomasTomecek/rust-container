@@ -2,7 +2,11 @@
 
 # this script is used to initiate builds regularly
 
-set -ex
+set -e
+
+echo $KEY
+
+set -x
 
 
 make ci-nightly
