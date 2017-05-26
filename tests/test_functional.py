@@ -53,6 +53,7 @@ def test_cargo(tmpdir):
     )
     d.start(container)
     try:
+        # TODO: create --bin project and run it
         exec_cargo_new = d.exec_create(container, "bash -c 'cargo init'")
         output = d.exec_start(exec_cargo_new).decode("utf-8")
         assert "Created library project" in output
