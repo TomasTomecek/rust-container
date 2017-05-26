@@ -1,6 +1,6 @@
 # Rust in a container
 
-Latest [rust](https://github.com/rust-lang/rust/) compiler and
+Latest [Rust](https://github.com/rust-lang/rust/) compiler and
 [cargo](https://github.com/rust-lang/cargo/) in a linux container (using
 docker).
 
@@ -11,7 +11,7 @@ The images are available in [my Docker Hub repository](https://hub.docker.com/r/
 * `$ docker pull tomastomecek/rust` — this is the most recent stable release
 * `$ docker pull tomastomecek/rust:nightly` — this is the most recent, functional nightly release
 
-Each image is also tagged with version of rust compiler, so for example:
+Each image is also tagged with version of Rust compiler, so for example:
 
 ```
 $ docker pull tomastomecek/rust:1.17.0
@@ -87,8 +87,8 @@ These images are being created using a very simple CI/CD pipeline. Here's how it
 
 3. Rust stable docker image is built.
 
-4. Tests for rust stable docker image are executed. These tests verify that
-   * Rust compiler is able to compile rust code.
+4. Tests for Rust stable docker image are executed. These tests verify that
+   * Rust compiler is able to compile Rust code.
    * Cargo is able to create a new project.
    * This cargo project can be built.
 
@@ -100,5 +100,5 @@ These images are being created using a very simple CI/CD pipeline. Here's how it
 With this very simple pipeline you can be sure that
 
  * you get functional images
- * you get latest rust compiler
- * you can pick a version of rust
+ * you get latest Rust compiler
+ * you can pick a version of Rust
