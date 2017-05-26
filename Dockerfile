@@ -18,6 +18,7 @@ ARG USER="rust"
 ARG RUST_BACKTRACE="1"
 
 ENV HOME=/home/${USER}
+ENV USER=${USER}
 RUN useradd -o -u ${USER_ID} -m ${USER}
 
 # https://static.rust-lang.org/dist/2017-03-16/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
