@@ -1,18 +1,20 @@
 # Rust in a container
 
-Latest rust compiler and cargo in a linux container (using docker).
+Latest [rust](https://github.com/rust-lang/rust/) compiler and
+[cargo](https://github.com/rust-lang/cargo/) in a linux container (using
+docker).
 
 ## Getting the images
 
 The images are available in [my Docker Hub repository](https://hub.docker.com/r/tomastomecek/rust/):
 
-* `docker pull tomastomecek/rust` — this is the most recent stable release
-* `docker pull tomastomecek/rust:nightly` — this is the most recent, functional nightly release
+* `$ docker pull tomastomecek/rust` — this is the most recent stable release
+* `$ docker pull tomastomecek/rust:nightly` — this is the most recent, functional nightly release
 
 Each image is also tagged with version of rust compiler, so for example:
 
 ```
-docker pull tomastomecek/rust:1.17.0
+$ docker pull tomastomecek/rust:1.17.0
 ```
 
 For more info what versions are available, see the section [Tags](https://hub.docker.com/r/tomastomecek/rust/tags/).
@@ -22,10 +24,10 @@ For more info what versions are available, see the section [Tags](https://hub.do
 
 You should mount your project inside directory `/src` within the container. `cargo` and `rustc` commands are then available in the container.
 
-Here is a couple of use cases you can do:
+Here is a guide how to perform some common actions:
 
 1. Compile a file:
-  ```
+  ```bash
   $ ls -lha .
   total 4.0K
   -rw-rw-r-- 1 me me 37 May 23 13:10 main.rs
@@ -42,7 +44,7 @@ Here is a couple of use cases you can do:
   ```
 
 2. Create a new project using cargo:
-  ```
+  ```bash
   $ mkdir the-best-project
 
   $ cd the-best-project
@@ -61,7 +63,7 @@ Here is a couple of use cases you can do:
   ```
 
 3. Compile a cargo project:
-  ```
+  ```bash
   $ ls -lh .
   total 8.0K
   -rw-r--r-- 1 me me  76 May 26 18:35 Cargo.toml
@@ -81,14 +83,14 @@ These images are being created using a very simple CI/CD pipeline. Here's how it
 
 1. Travis CI initiates a build every day using its [Cron Jobs](https://github.com/travis-ci/beta-features/issues/1) feature.
 
-2. This build script is executed.
+2. [This build script](https://github.com/TomasTomecek/rust-container/blob/master/hack/ci.sh) is executed.
 
-3. Rust stable docker image is built
+3. Rust stable docker image is built.
 
 4. Tests for rust stable docker image are executed. These tests verify that
-  * Rust compiler is able to compile rust code
-  * Cargo is able to create a new project
-  * This cargo project can be built
+   * Rust compiler is able to compile rust code.
+   * Cargo is able to create a new project.
+   * This cargo project can be built.
 
 5. If the tests passed, push the image to Docker Hub.
 
