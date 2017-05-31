@@ -1,5 +1,7 @@
 # Rust in a container
 
+[![Build Status](https://travis-ci.org/TomasTomecek/rust-container.svg?branch=master)](https://travis-ci.org/TomasTomecek/rust-container)
+
 Latest [Rust](https://github.com/rust-lang/rust/) compiler and
 [cargo](https://github.com/rust-lang/cargo/) in a linux container (using
 docker).
