@@ -12,7 +12,6 @@ RUN dnf install -y file gcc && \
 # stable, beta, nightly, 1.15.1
 # channel, channel + date, or an explicit version
 ARG RUST_SPEC=stable
-# ARG WITH_TEST="yes"
 ARG USER_ID="1000"
 ARG USER="rust"
 ARG RUST_BACKTRACE="1"
@@ -25,11 +24,14 @@ RUN useradd -o -u ${USER_ID} -m ${USER}
 RUN cd /root && curl -s -L -O https://static.rust-lang.org/rustup.sh
 RUN cd /root && bash ./rustup.sh --spec=$RUST_SPEC --verbose --disable-sudo
 
+# so we can reuse layers above
+ARG WITH_CLIPPY=no
+
 USER ${USER_ID}
 
-# RUN if [ $WITH_TEST == "yes" ] ; then \
-#     cargo install clippy || : ; \
-#     fi
+RUN if [ "$WITH_CLIPPY" == "yes" ] ; then \
+      cargo install clippy; \
+    fi
 
 # ENV LANG=en_US.utf8 \
 #     LC_ALL=en_US.UTF-8

@@ -1,0 +1,7 @@
+[package]
+name = "clippy-test"
+version = "0.0.1"
+
+[[bin]]
+name = "clippy-test"
+path = "src/main.rs"

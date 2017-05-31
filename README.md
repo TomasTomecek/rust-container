@@ -10,8 +10,9 @@ The images are available in [my Docker Hub repository](https://hub.docker.com/r/
 
 * `$ docker pull tomastomecek/rust` — this is the most recent stable release
 * `$ docker pull tomastomecek/rust:nightly` — this is the most recent, functional nightly release
+* `$ docker pull tomastomecek/rust:clippy` — latest nightly image with [clippy](https://github.com/Manishearth/rust-clippy)
 
-Each image is also tagged with version of Rust compiler, so for example:
+Every stable image is also tagged with version of Rust compiler, so for example:
 
 ```
 $ docker pull tomastomecek/rust:1.17.0
