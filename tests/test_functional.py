@@ -115,8 +115,7 @@ def test_clippy(tmpdir):
         "  | |_____^ help: try this `if let Some(y) = x { $ crate :: io :: _print ( format_args ! ( $ ( $ arg ) * ) ) }`\n"
         "  |\n"
         "  = note: #[warn(single_match)] on by default\n"
-        "  = help: for further information visit https://github.com/Manishearth/rust-clippy/wiki#single_match\n"
-        "    Finished dev [unoptimized + debuginfo] target(s) in"
+        "  = help: for further information visit https://github.com/Manishearth/rust-clippy/wiki#single_match"
     )
     print(repr(expected_output))
     assert expected_output in logs
