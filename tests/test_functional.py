@@ -120,7 +120,8 @@ def test_clippy(tmpdir):
     )
     print(repr(expected_output))
     assert expected_output in logs
-    binary_path = os.path.join(target_dir, "target", "debug", "clippy-test")
-    output = subprocess.check_output([binary_path]).decode("utf-8")
-    expected_output = "1\n"
-    assert output == expected_output
+    # no need to compile again
+    # binary_path = os.path.join(target_dir, "target", "debug", "clippy-test")
+    # output = subprocess.check_output([binary_path]).decode("utf-8")
+    # expected_output = "1\n"
+    # assert output == expected_output
