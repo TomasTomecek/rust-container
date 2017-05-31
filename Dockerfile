@@ -29,11 +29,14 @@ ARG WITH_CLIPPY=no
 
 USER ${USER_ID}
 
+ENV CARGO_INSTALL_ROOT=${HOME}/.cargo
+ENV PATH=${PATH}:${HOME}/.cargo/bin
+
 RUN if [ "$WITH_CLIPPY" == "yes" ] ; then \
       cargo install clippy; \
     fi
-# FIXME: $CARGO_HOME/bin needs to be on $PATH
-# ENV CARGO_HOME=/src/.cargo
+
+ENV CARGO_HOME=/src/.cargo
 
 # ENV LANG=en_US.utf8 \
 #     LC_ALL=en_US.UTF-8
