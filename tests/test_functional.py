@@ -101,7 +101,7 @@ def test_clippy(tmpdir):
     )
     d.start(container)
     d.wait(container)
-    logs = d.logs(container)
+    logs = d.logs(container).decode('utf-8')
     print(repr(logs))
     expected_output = (
         "   Compiling clippy-test v0.0.1 (file:///src)\n"
