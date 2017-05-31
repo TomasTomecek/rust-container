@@ -37,7 +37,11 @@ ci-nightly-test:
 ci-stable-test:
 	IMAGE_NAME=$(CI_STABLE_IMAGE_NAME) py.test -vv -m "generic and not clippy" tests
 ci-clippy-test:
-	IMAGE_NAME=$(CI_CLIPPY_IMAGE_NAME) py.test -vv -m 'clippy' tests
+	IMAGE_NAME=$(CI_CLIPPY_IMAGE_NAME) py.test -vv -m 'generic or clippy' tests
+
+# needs to be called as `make --no-print-directory test-ci-script`
+test-ci-script:
+	DONT_PUSH=yes hack/ci.sh
 
 shell:
 	docker run --rm -ti $(STABLE_IMAGE_NAME) bash -l
