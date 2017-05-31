@@ -32,6 +32,7 @@ USER ${USER_ID}
 RUN if [ "$WITH_CLIPPY" == "yes" ] ; then \
       cargo install clippy; \
     fi
+ENV CARGO_HOME=/src/.cargo
 
 # ENV LANG=en_US.utf8 \
 #     LC_ALL=en_US.UTF-8
