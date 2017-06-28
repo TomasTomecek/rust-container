@@ -94,7 +94,9 @@ def test_clippy(tmpdir):
     tests_dir = os.path.dirname(os.path.abspath(__file__))
     helper_files_dir = os.path.join(tests_dir, "files", "clippy")
     target_dir = os.path.join(str(tmpdir), "project")
+    # FIXME: this hack is made so the tests run in travis, should be addressed properly
     print(subprocess.call(["sudo", "chmod", "0777", target_dir]))
+    print(subprocess.call(["sudo", "chown", "1000:1000", target_dir]))
     shutil.copytree(helper_files_dir, target_dir)
 
     d = docker.APIClient(version="auto")
@@ -131,6 +133,7 @@ def test_clippy(tmpdir):
     )
     print(repr(expected_output))
     assert expected_output in logs
+    print(subprocess.call(["sudo", "chown", "-R", "travis:travis", target_dir]))
     # no need to compile again
     # binary_path = os.path.join(target_dir, "target", "debug", "clippy-test")
     # output = subprocess.check_output([binary_path]).decode("utf-8")
