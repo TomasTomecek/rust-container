@@ -11,6 +11,10 @@ IMAGE_NAME=os.environ["IMAGE_NAME"]
 
 @pytest.mark.generic
 def test_by_compiling(tmpdir):
+    # Travis CI tests are running using user 2000, in container we have user 1000
+    # we need to ensure that we can write into the tmp file
+    # yes, this is insecure
+    print(subprocess.call(["sudo", "chown", "0777", str(tmpdir)]))
     tests_dir = os.path.dirname(os.path.abspath(__file__))
     helper_files_dir = os.path.join(tests_dir, "files", "compilation")
     rust_source_file = os.path.join(helper_files_dir, "main.rs")
@@ -21,7 +25,6 @@ def test_by_compiling(tmpdir):
         IMAGE_NAME,
         command="rustc ./main.rs",
         volumes=['/src'],
-        user=str(os.getuid()),
         host_config=d.create_host_config(
             binds={
                 str(tmpdir): {
@@ -41,12 +44,15 @@ def test_by_compiling(tmpdir):
 
 @pytest.mark.generic
 def test_cargo(tmpdir):
+    # Travis CI tests are running using user 2000, in container we have user 1000
+    # we need to ensure that we can write into the tmp file
+    # yes, this is insecure
+    print(subprocess.call(["sudo", "chown", "0777", str(tmpdir)]))
     d = docker.APIClient(version="auto")
     container = d.create_container(
         IMAGE_NAME,
         command="sleep 99999",
         volumes=['/src'],
-        user=str(os.getuid()),
         host_config=d.create_host_config(
             binds={
                 str(tmpdir): {
@@ -59,7 +65,7 @@ def test_cargo(tmpdir):
     d.start(container)
     try:
         # TODO: create --bin project and run it
-        exec_cargo_new = d.exec_create(container, "bash -c 'cargo init'")
+        exec_cargo_new = d.exec_create(container, "cargo init")
         output = d.exec_start(exec_cargo_new).decode("utf-8")
         assert "Created library project" in output
         exec_inspect = d.exec_inspect(exec_cargo_new)
@@ -82,6 +88,10 @@ def test_cargo(tmpdir):
 
 @pytest.mark.clippy
 def test_clippy(tmpdir):
+    # Travis CI tests are running using user 2000, in container we have user 1000
+    # we need to ensure that we can write into the tmp file
+    # yes, this is insecure
+    print(subprocess.call(["sudo", "chown", "0777", str(tmpdir)]))
     tests_dir = os.path.dirname(os.path.abspath(__file__))
     helper_files_dir = os.path.join(tests_dir, "files", "clippy")
     target_dir = os.path.join(str(tmpdir), "project")
@@ -92,7 +102,6 @@ def test_clippy(tmpdir):
         IMAGE_NAME,
         command="cargo clippy",
         volumes=['/src'],
-        user=str(os.getuid()),
         host_config=d.create_host_config(
             binds={
                 target_dir: {
