@@ -10,5 +10,4 @@ install: 'pip install docker'
 script:
   - id
   - getent passwd
-  - sudo chmod 0777 /tmp
   - hack/ci.sh
