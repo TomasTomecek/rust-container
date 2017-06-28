@@ -21,6 +21,7 @@ def test_by_compiling(tmpdir):
         IMAGE_NAME,
         command="rustc ./main.rs",
         volumes=['/src'],
+        user=str(os.getuid()),
         host_config=d.create_host_config(
             binds={
                 str(tmpdir): {
@@ -45,6 +46,7 @@ def test_cargo(tmpdir):
         IMAGE_NAME,
         command="sleep 99999",
         volumes=['/src'],
+        user=str(os.getuid()),
         host_config=d.create_host_config(
             binds={
                 str(tmpdir): {
@@ -90,6 +92,7 @@ def test_clippy(tmpdir):
         IMAGE_NAME,
         command="cargo clippy",
         volumes=['/src'],
+        user=str(os.getuid()),
         host_config=d.create_host_config(
             binds={
                 target_dir: {
