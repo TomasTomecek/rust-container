@@ -94,10 +94,10 @@ def test_clippy(tmpdir):
     tests_dir = os.path.dirname(os.path.abspath(__file__))
     helper_files_dir = os.path.join(tests_dir, "files", "clippy")
     target_dir = os.path.join(str(tmpdir), "project")
-    # FIXME: this hack is made so the tests run in travis, should be addressed properly
-    print(subprocess.call(["sudo", "chmod", "0777", target_dir]))
-    print(subprocess.call(["sudo", "chown", "1000:1000", target_dir]))
     shutil.copytree(helper_files_dir, target_dir)
+    # FIXME: this hack is made so the tests run in travis, should be addressed properly
+    print(subprocess.call(["sudo", "chmod", "-R", "0777", target_dir]))
+    print(subprocess.call(["sudo", "chown", "-R", "1000:1000", target_dir]))
 
     d = docker.APIClient(version="auto")
     container = d.create_container(
