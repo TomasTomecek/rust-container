@@ -91,10 +91,10 @@ def test_clippy(tmpdir):
     # Travis CI tests are running using user 2000, in container we have user 1000
     # we need to ensure that we can write into the tmp file
     # yes, this is insecure
-    print(subprocess.call(["sudo", "chmod", "0777", str(tmpdir)]))
     tests_dir = os.path.dirname(os.path.abspath(__file__))
     helper_files_dir = os.path.join(tests_dir, "files", "clippy")
     target_dir = os.path.join(str(tmpdir), "project")
+    print(subprocess.call(["sudo", "chmod", "0777", target_dir]))
     shutil.copytree(helper_files_dir, target_dir)
 
     d = docker.APIClient(version="auto")
