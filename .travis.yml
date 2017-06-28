@@ -8,4 +8,5 @@ services:
 - docker
 install: 'pip install docker'
 script:
-  - hack/ci.sh
+  - id
+  - sudo -E su $USER -c 'hack/ci.sh'
