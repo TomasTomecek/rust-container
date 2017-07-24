@@ -11,3 +11,5 @@ script:
   - id
   - getent passwd
   - hack/ci.sh
+notifications:
+  email: false
