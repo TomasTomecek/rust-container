@@ -118,21 +118,12 @@ def test_clippy(tmpdir):
     logs = d.logs(container).decode('utf-8')
     print(repr(logs))
     expected_output = (
-        "   Compiling clippy-test v0.0.1 (file:///src)\n"
-        "warning: you seem to be trying to use match for destructuring a single pattern. Consider using `if let`\n"
-        " --> src/main.rs:3:5\n"
-        "  |\n"
-        "3 | /     match x {\n"
-        "4 | |         Some(y) => println!(\"{:?}\", y),\n"
-        "5 | |         _ => ()\n"
-        "6 | |     }\n"
-        "  | |_____^ help: try this `if let Some(y) = x { $ crate :: io :: _print ( format_args ! ( $ ( $ arg ) * ) ) }`\n"
-        "  |\n"
-        "  = note: #[warn(single_match)] on by default\n"
-        "  = help: for further information visit https://github.com/Manishearth/rust-clippy/wiki#single_match"
+        "Compiling clippy-test v0.0.1 (file:///src)",
+        "warning: you seem to be trying to use match for destructuring a single pattern. Consider using `if let`"
     )
     print(repr(expected_output))
-    assert expected_output in logs
+    assert expected_output[0] in logs
+    assert expected_output[1] in logs
     print(subprocess.call(["sudo", "chown", "-R", "travis:travis", target_dir]))
     # no need to compile again
     # binary_path = os.path.join(target_dir, "target", "debug", "clippy-test")
