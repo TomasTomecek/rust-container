@@ -1,4 +1,4 @@
-FROM fedora:25
+FROM fedora:27
 
 LABEL maintainer="Tomas Tomecek <tomas@tomecek.net>"
 
