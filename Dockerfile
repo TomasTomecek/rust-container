@@ -22,7 +22,7 @@ RUN useradd -o -u ${USER_ID} -m ${USER}
 
 # https://static.rust-lang.org/dist/2017-03-16/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
 RUN cd /root && curl -s -L -O https://static.rust-lang.org/rustup.sh
-RUN cd /root && bash ./rustup.sh --spec=$RUST_SPEC --verbose --disable-sudo
+RUN cd /root && bash ./rustup.sh -y --default-toolchain=$RUST_SPEC --verbose
 
 # so we can reuse layers above
 ARG WITH_CLIPPY=no
