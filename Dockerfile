@@ -1,4 +1,4 @@
-FROM fedora:27
+FROM registry.fedoraproject.org/fedora:29
 
 LABEL maintainer="Tomas Tomecek <tomas@tomecek.net>"
 
